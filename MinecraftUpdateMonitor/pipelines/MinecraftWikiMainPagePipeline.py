@@ -8,7 +8,7 @@ class MinecraftWikiMainPagePipeline:
         latestReleaseVersionInformationInDatabase = DatabaseManager.getInstance().getLatestMinecraftReleaseVersionInformation()
         scrapedReleaseVersionString = item["releaseVersionString"]
 
-        if ((latestReleaseVersionInformationInDatabase is None) or ("versionString" not in latestReleaseVersionInformationInDatabase) or (not (latestReleaseVersionInformationInDatabase["versionString"] == scrapedReleaseVersionString))):
+        if ((latestReleaseVersionInformationInDatabase is None) or (latestReleaseVersionInformationInDatabase["versionString"] != scrapedReleaseVersionString)):
             # Latest version is not in database.
             releaseVersionWikiPageURL = item["releaseVersionURL"]
             DatabaseManager.getInstance().addMinecraftReleaseVersionInformation(scrapedReleaseVersionString, releaseVersionWikiPageURL)
@@ -17,7 +17,7 @@ class MinecraftWikiMainPagePipeline:
         latestDevelopmentVersionInformationInDatabase = DatabaseManager.getInstance().getLatestMinecraftDevelopmentVersionInformation()
         scrapedDevelopmentVersionString = item["developmentVersionString"]
 
-        if ((latestDevelopmentVersionInformationInDatabase is None) or ("versionString" not in latestDevelopmentVersionInformationInDatabase) or (not(latestDevelopmentVersionInformationInDatabase["versionString"] == scrapedDevelopmentVersionString))):
+        if ((latestDevelopmentVersionInformationInDatabase is None) or (latestDevelopmentVersionInformationInDatabase["versionString"] != scrapedDevelopmentVersionString)):
             # Latest version is not in database.
             developmentVersionWikiPageURL = item["developmentVersionURL"]
             DatabaseManager.getInstance().addMinecraftDevelopmentVersionInformation(scrapedDevelopmentVersionString, developmentVersionWikiPageURL)

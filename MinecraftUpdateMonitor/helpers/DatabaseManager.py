@@ -55,7 +55,7 @@ class DatabaseManager:
         return self.databaseCursor.fetchall()
 
     def addMinecraftDevelopmentVersionInformation(self, versionString, wikiPageURL):
-        self.databaseCursor.execute("INSERT INTO " + DatabaseManager.minecraftDevelopmentVersionsTableName + " VALUES(0, ?, strftime('%s', 'now'), ?)", (versionString, wikiPageURL))
+        self.databaseCursor.execute("INSERT INTO " + DatabaseManager.minecraftDevelopmentVersionsTableName + " VALUES(NULL, ?, strftime('%s', 'now'), ?)", (versionString, wikiPageURL))
         self.databaseConnection.commit()
 
     def getLatestMinecraftReleaseVersionInformation(self):
@@ -69,5 +69,5 @@ class DatabaseManager:
         return self.databaseCursor.fetchall()
 
     def addMinecraftReleaseVersionInformation(self, versionString, wikiPageURL):
-        self.databaseCursor.execute("INSERT INTO " + DatabaseManager.minecraftReleaseVersionsTableName + " VALUES(0, ?, strftime('%s', 'now'), ?)", (versionString, wikiPageURL))
+        self.databaseCursor.execute("INSERT INTO " + DatabaseManager.minecraftReleaseVersionsTableName + " VALUES(NULL, ?, strftime('%s', 'now'), ?)", (versionString, wikiPageURL))
         self.databaseConnection.commit()
