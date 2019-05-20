@@ -18,19 +18,27 @@ class MinecraftWikiMainPageSpider (scrapy.Spider):
 
     def parse(self, response):
         try:
-            releaseVersionString = response.xpath("//div[@class='edition-group']/div[@class='edition-box'][1]/div/div[1]/b/a[@href and @title]/text()").extract()[0]
-            releaseVersionRelativeURL = response.xpath("//div[@class='edition-group']/div[@class='edition-box'][1]/div/div[1]/b/a[@href and @title]/@href").extract()[0]
-            releaseVersionFullURL = "https://minecraft.gamepedia.com" + releaseVersionRelativeURL
-            developmentVersionString = response.xpath("//div[@class='edition-group']/div[@class='edition-box'][1]/div/div[2]/b/a[@href and @title]/text()").extract()[0]
-            developmentVersionRelativeURL = response.xpath("//div[@class='edition-group']/div[@class='edition-box'][1]/div/div[2]/b/a[@href and @title]/@href").extract()[0]
-            developmentVersionFullURL = "https://minecraft.gamepedia.com" + developmentVersionRelativeURL
+            javaEditionVersionStrings = response.xpath("//div[@class='edition-group']/div[@class='edition-box'][1]/div/div/a[@title='Java']/../b/a[@href and @title]/text()").extract()
+            javaEditionRelativeURLs = response.xpath("//div[@class='edition-group']/div[@class='edition-box'][1]/div/div/a[@title='Java']/../b/a[@href and @title]/@href").extract()
 
-            yield {
-                "releaseVersionString": releaseVersionString,
-                "releaseVersionURL": releaseVersionFullURL,
-                "developmentVersionString": developmentVersionString,
-                "developmentVersionURL": developmentVersionFullURL
-            }
+            if ((len(javaEditionVersionStrings) == 1) and (len(javaEditionRelativeURLs) == 1)):
+                # Only a release version is available.
+                yield {
+                    "releaseVersionString": javaEditionVersionStrings[0],
+                    "releaseVersionURL": "https://minecraft.gamepedia.com" + javaEditionRelativeURLs[0]
+                }
+
+            elif ((len(javaEditionVersionStrings) == 2) and (len(javaEditionRelativeURLs) == 2)):
+                # Both a release version and a development version are available.
+                yield {
+                    "releaseVersionString": javaEditionVersionStrings[0],
+                    "releaseVersionURL": "https://minecraft.gamepedia.com" + javaEditionRelativeURLs[0],
+                    "developmentVersionString": javaEditionVersionStrings[1],
+                    "developmentVersionURL": "https://minecraft.gamepedia.com" + javaEditionRelativeURLs[1]
+                }
+
+            else:
+                yield {}
 
         except:
             yield {}
