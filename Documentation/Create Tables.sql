@@ -6,7 +6,7 @@
 
 
 CREATE TABLE MinecraftDevelopmentVersions (
-    versionID INT,
+    versionID INTEGER,    -- Make sure to specify the full "INTEGER" type (rather than "INT") to make this column an alias of `rowid`.
 
     versionString VARCHAR(16),    -- Example: 19w02a, 1.13-pre10
 
@@ -18,7 +18,7 @@ CREATE TABLE MinecraftDevelopmentVersions (
 );
 
 CREATE TABLE MinecraftReleaseVersions (
-    versionID INT,
+    versionID INTEGER,    -- Make sure to specify the full "INTEGER" type (rather than "INT") to make this column an alias of `rowid`.
 
     versionString VARCHAR(12),    -- Example: 1.13.2
 
