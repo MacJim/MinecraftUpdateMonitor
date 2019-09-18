@@ -18,7 +18,7 @@ LOG_LEVEL = "DEBUG"    # CRITICAL, ERROR, WARNING, INFO, DEBUG
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'MinecraftUpdateMonitor (+http://www.yourdomain.com)'
-USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:68.0) Gecko/20100101 Firefox/68.0"
+USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -51,7 +51,7 @@ DEFAULT_REQUEST_HEADERS = {
     "Accept-Language": "en-US,zh-TW;q=0.8,zh-CN;q=0.5,en;q=0.3",
     "DNT": "1",
     "Host": "minecraft.gamepedia.com",
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:68.0) Gecko/20100101 Firefox/68.0"
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0"
 }
 
 # Enable or disable spider middlewares
